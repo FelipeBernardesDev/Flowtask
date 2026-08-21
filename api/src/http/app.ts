@@ -12,6 +12,7 @@ import { fastifyRateLimit } from '@fastify/rate-limit'
 import { env } from '@/env/index.js'
 import { logger } from '@/lib/logger.js'
 import { errorHandler } from './error-handler.js'
+import { routes } from './routes/index.js'
 
 export const app = fastify({
     loggerInstance: logger,
@@ -47,4 +48,8 @@ app.register(fastifySwagger, {
 
 app.register(fastifyApiReference, {
     routePrefix: '/docs',
+})
+
+app.register(routes, {
+    prefix: '/api/v1',
 })
