@@ -7,6 +7,7 @@ const envSchema = z.object({
     HOST: z.string().default('localhost'),
     DATABASE_URL: z.url(),
     CORS_ORIGIN: z.url(),
+    LOG_LEVEL: z.enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal']).default('info'),
 })
 
 const _env = envSchema.safeParse(process.env)

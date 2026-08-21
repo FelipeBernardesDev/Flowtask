@@ -10,9 +10,10 @@ import {
 import { fastifyCors } from '@fastify/cors'
 import { fastifyRateLimit } from '@fastify/rate-limit'
 import { env } from '@/env/index.js'
+import { logger } from '@/lib/logger.js'
 
 export const app = fastify({
-    logger: true,
+    loggerInstance: logger,
 }).withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
