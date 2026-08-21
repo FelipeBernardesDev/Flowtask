@@ -11,6 +11,7 @@ import { fastifyCors } from '@fastify/cors'
 import { fastifyRateLimit } from '@fastify/rate-limit'
 import { env } from '@/env/index.js'
 import { logger } from '@/lib/logger.js'
+import { errorHandler } from './error-handler.js'
 
 export const app = fastify({
     loggerInstance: logger,
@@ -18,6 +19,8 @@ export const app = fastify({
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
+
+app.setErrorHandler(errorHandler)
 
 app.register(fastifyCors, {
     origin: env.CORS_ORIGIN,
