@@ -1,9 +1,32 @@
 import fastify from 'fastify'
 import { fastifySwagger } from '@fastify/swagger'
 import fastifyApiReference from '@scalar/fastify-api-reference'
+import {
+    serializerCompiler,
+    validatorCompiler,
+    jsonSchemaTransform,
+    type ZodTypeProvider,
+} from 'fastify-type-provider-zod'
+import { fastifyCors } from '@fastify/cors'
+import { fastifyRateLimit } from '@fastify/rate-limit'
+import { env } from '@/env/index.js'
 
 export const app = fastify({
     logger: true,
+}).withTypeProvider<ZodTypeProvider>()
+
+app.setSerializerCompiler(serializerCompiler)
+app.setValidatorCompiler(validatorCompiler)
+
+app.register(fastifyCors, {
+    origin: env.CORS_ORIGIN,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+})
+
+app.register(fastifyRateLimit, {
+    max: 100,
+    timeWindow: '1 minute',
 })
 
 app.register(fastifySwagger, {
@@ -15,6 +38,7 @@ app.register(fastifySwagger, {
             version: '1.0.0',
         },
     },
+    transform: jsonSchemaTransform,
 })
 
 app.register(fastifyApiReference, {
