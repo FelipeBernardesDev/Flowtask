@@ -1,5 +1,6 @@
 import { AppError } from '@/errors/app-error.js'
 import { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
+import { hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod'
 import { ZodError } from 'zod'
 
 export function errorHandler(
@@ -22,9 +23,17 @@ export function errorHandler(
         })
     }
 
+    if (hasZodFastifySchemaValidationErrors(error)) {
+        return reply.status(400).send({
+            code: 'VALIDATION_ERROR',
+            message: 'Validation error',
+            error: error.validation,
+        })
+    }
+
     request.log.error(error)
     return reply.status(500).send({
-        error: 'INTERNAL_SERVER_ERROR',
+        code: 'INTERNAL_SERVER_ERROR',
         message: 'Internal server error',
     })
 }
