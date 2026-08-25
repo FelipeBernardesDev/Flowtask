@@ -5,6 +5,12 @@ import { env } from '@/env/index.js'
 export default fp(async (fastify) => {
     fastify.register(fastifyJwt, {
         secret: env.JWT_SECRET,
+
+        cookie: {
+            cookieName: 'access_token',
+            signed: false,
+        },
+
         sign: {
             expiresIn: env.JWT_EXPIRES_IN,
         },

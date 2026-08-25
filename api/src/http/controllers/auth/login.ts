@@ -16,7 +16,7 @@ export async function loginController(
     })
 
     return reply
-        .setCookie('token', token, {
+        .setCookie('access_token', token, {
             httpOnly: true,
             secure: env.NODE_ENV === 'production',
             sameSite: 'lax',
