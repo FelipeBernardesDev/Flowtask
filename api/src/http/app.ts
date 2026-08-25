@@ -13,6 +13,8 @@ import { env } from '@/env/index.js'
 import { logger } from '@/lib/logger.js'
 import { errorHandler } from './error-handler.js'
 import { routes } from './routes/index.js'
+import jwt from '@/plugins/jwt.js'
+import cookie from '@/plugins/cookie.js'
 
 export const app = fastify({
     loggerInstance: logger,
@@ -33,6 +35,9 @@ app.register(fastifyRateLimit, {
     max: 100,
     timeWindow: '1 minute',
 })
+
+app.register(cookie)
+app.register(jwt)
 
 app.register(fastifySwagger, {
     openapi: {
