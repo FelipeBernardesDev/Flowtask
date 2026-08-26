@@ -47,6 +47,15 @@ app.register(fastifySwagger, {
             description: 'Task management API',
             version: '1.0.0',
         },
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
     },
     transform: jsonSchemaTransform,
 })
