@@ -17,7 +17,7 @@ export async function getTasksRoute(app: FastifyInstance) {
                 description: 'Get all tasks from the authenticated user.',
                 security: [
                     {
-                        bearerAuth: [],
+                        cookieAuth: [],
                     },
                 ],
                 querystring: getTasksQuerySchema,

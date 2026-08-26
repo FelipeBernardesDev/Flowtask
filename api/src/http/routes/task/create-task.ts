@@ -15,6 +15,11 @@ export async function createTaskRoute(app: FastifyInstance) {
                 tags: ['Tasks'],
                 summary: 'Create a new task',
                 description: 'Creates a new task for the authenticated user.',
+                security: [
+                    {
+                        cookieAuth: [],
+                    },
+                ],
                 body: createTaskSchema,
                 response: {
                     201: taskResponseSchema,
