@@ -7,6 +7,7 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
         })
     } catch {
         return reply.status(401).send({
+            code: 'UNAUTHORIZED',
             message: 'Unauthorized',
         })
     }
