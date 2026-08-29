@@ -10,3 +10,4 @@ export const getTasksQuerySchema = z.object({
 })
 
 export type GetTasksParams = z.infer<typeof getTasksQuerySchema>
+export type TaskIdParams = z.infer<typeof taskIdParamSchema>

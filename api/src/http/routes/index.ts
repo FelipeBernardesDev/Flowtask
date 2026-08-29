@@ -4,6 +4,7 @@ import { loginRoute } from './auth/login.js'
 import { createTaskRoute } from './task/create-task.js'
 import { getTasksRoute } from './task/get-task.js'
 import { logoutRoute } from './auth/logout.js'
+import { deleteTaskRoute } from './task/delete-task.js'
 
 export async function routes(app: FastifyInstance) {
     //AUTH
@@ -13,4 +14,5 @@ export async function routes(app: FastifyInstance) {
     //TASKS
     await app.register(createTaskRoute, { prefix: '/tasks' })
     await app.register(getTasksRoute, { prefix: '/tasks' })
+    await app.register(deleteTaskRoute, { prefix: '/tasks' })
 }
