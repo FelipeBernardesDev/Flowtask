@@ -1,13 +1,10 @@
 import { AppError } from '@/errors/app-error.js'
 import { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
 import { hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod'
+import { Prisma } from '@/generated/prisma/index.js'
 import { ZodError } from 'zod'
 
-export function errorHandler(
-    error: FastifyError | Error,
-    request: FastifyRequest,
-    reply: FastifyReply,
-) {
+export function errorHandler(error: FastifyError, request: FastifyRequest, reply: FastifyReply) {
     if (error instanceof AppError) {
         return reply.status(error.statusCode).send({
             code: error.code,
@@ -29,6 +26,24 @@ export function errorHandler(
             message: 'Validation error',
             error: error.validation,
         })
+    }
+
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        switch (error.code) {
+            case 'P2002':
+                return reply.status(409).send({
+                    message: 'Register already exist',
+                    statusCode: 409,
+                    code: 'CONFLICT',
+                })
+
+            case 'P2025':
+                return reply.status(404).send({
+                    message: 'Register not found',
+                    statusCode: 404,
+                    code: 'NOT_FOUND',
+                })
+        }
     }
 
     request.log.error(error)
