@@ -5,7 +5,7 @@ export const taskResponseSchema = z.object({
     id: z.uuid(),
     title: z.string(),
     description: z.string().nullable(),
-    status: taskStatusSchema,
+    status: z.enum(['PENDING', 'IN_PROGRESS', 'COMPLETED']),
     userId: z.uuid(),
     createdAt: z.date(),
     updatedAt: z.date(),
