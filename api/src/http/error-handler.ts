@@ -7,8 +7,9 @@ import { ZodError } from 'zod'
 export function errorHandler(error: FastifyError, request: FastifyRequest, reply: FastifyReply) {
     if (error instanceof AppError) {
         return reply.status(error.statusCode).send({
-            code: error.code,
             message: error.message,
+            statusCode: error.statusCode,
+            code: error.code,
         })
     }
 
