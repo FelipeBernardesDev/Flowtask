@@ -23,8 +23,14 @@ export async function logoutRoute(app: FastifyInstance) {
                         message: z.string(),
                     }),
                     401: z.object({
-                        code: z.string(),
                         message: z.string(),
+                        statusCode: z.number(),
+                        code: z.string(),
+                    }),
+                    500: z.object({
+                        message: z.string(),
+                        statusCode: z.number(),
+                        code: z.string(),
                     }),
                 },
             },

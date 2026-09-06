@@ -30,8 +30,9 @@ export async function deleteTaskRoute(app: FastifyInstance) {
                         error: z.array(z.any()),
                     }),
                     500: z.object({
-                        code: z.string(),
                         message: z.string(),
+                        statusCode: z.number(),
+                        code: z.string(),
                     }),
                 },
             },

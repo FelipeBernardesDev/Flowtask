@@ -49,7 +49,8 @@ export function errorHandler(error: FastifyError, request: FastifyRequest, reply
 
     request.log.error(error)
     return reply.status(500).send({
-        code: 'INTERNAL_SERVER_ERROR',
         message: 'Internal server error',
+        statusCode: 500,
+        code: 'INTERNAL_SERVER_ERROR',
     })
 }

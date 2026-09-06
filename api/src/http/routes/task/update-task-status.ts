@@ -36,8 +36,9 @@ export async function updateTaskStatusRoute(app: FastifyInstance) {
                         code: z.string(),
                     }),
                     500: z.object({
-                        code: z.string(),
                         message: z.string(),
+                        statusCode: z.number(),
+                        code: z.string(),
                     }),
                 },
             },

@@ -14,7 +14,8 @@ export async function getTaskByIdRoute(app: FastifyInstance) {
             schema: {
                 tags: ['Tasks'],
                 summary: 'Get task by id',
-                description: 'Returns the details of a specific task belonging to the authenticated user.',
+                description:
+                    'Returns the details of a specific task belonging to the authenticated user.',
                 security: [
                     {
                         cookieAuth: [],
@@ -29,8 +30,9 @@ export async function getTaskByIdRoute(app: FastifyInstance) {
                         code: z.string(),
                     }),
                     500: z.object({
-                        code: z.string(),
                         message: z.string(),
+                        statusCode: z.number(),
+                        code: z.string(),
                     }),
                 },
             },
