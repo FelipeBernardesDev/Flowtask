@@ -1,5 +1,5 @@
 import { TaskIdParams } from '@/http/schemas/task/task-params.js'
-import { getTaskByIdService } from '@/services/tasks/get-task-by-id.js'
+import { getTaskByIdService } from '@/services/task/get-task-by-id.js'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function getTaskByIdController(

@@ -1,6 +1,6 @@
 import { TaskIdParams } from '@/http/schemas/task/task-params.js'
 import { UpdateTaskInput } from '@/http/schemas/task/update-task.js'
-import { updateTaskService } from '@/services/tasks/update-task.js'
+import { updateTaskService } from '@/services/task/update-task.js'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function updateTaskController(

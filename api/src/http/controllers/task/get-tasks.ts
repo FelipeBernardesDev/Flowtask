@@ -1,4 +1,4 @@
-import { getTasksService } from '@/services/tasks/get-tasks.js'
+import { getTasksService } from '@/services/task/get-tasks.js'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function getTasksController(request: FastifyRequest, reply: FastifyReply) {

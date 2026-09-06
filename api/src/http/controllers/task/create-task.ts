@@ -1,5 +1,5 @@
 import { CreateTaskInput } from '@/http/schemas/task/create-task.js'
-import { createTaskService } from '@/services/tasks/create-task.js'
+import { createTaskService } from '@/services/task/create-task.js'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function createTaskController(

@@ -1,5 +1,5 @@
 import { TaskIdParams } from '@/http/schemas/task/task-params.js'
-import { deleteTaskService } from '@/services/tasks/delete-task.js'
+import { deleteTaskService } from '@/services/task/delete-task.js'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export async function deleteTaskController(
